@@ -1,4 +1,4 @@
-import sys
+import syss
 
 def clear():
     sys.stdout.write('\033[H\033[J')
