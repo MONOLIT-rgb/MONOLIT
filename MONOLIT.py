@@ -1,4 +1,4 @@
-import syss
+import sys
 
 def clear():
     sys.stdout.write('\033[H\033[J')
@@ -444,14 +444,19 @@ def update():
         rich("Обновления...", "#ed0c53")
         time.sleep(0.5)
         os.remove("MONOLIT.py")  
-        url = 'https://github.com/MONOLIT-rgb/MONOLIT/MONOLIT.py'
-        response = requests.get(url)
-        with open("MONOLIT.py", "wb") as file:
-            file.write(response.content)
-        wind = False
+        def download_file(url, filename):
+            response = requests.get(url)
+            if response.status_code == 200:
+                with open(filename, 'wb') as file:
+                    file.write(response.content)
+                print(f"{filename} успешно загружен.")
+            else:
+                print(f"Ошибка при загрузке файла: {response.status_code}")
+        url = "https://raw.githubusercontent.com/MONOLIT-rgb/MONOLIT/main/MONOLIT.py"
+        filename = "MONOLIT.py"
+        download_file(url, filename)
         rich("Все скачано запуск...", "#0ced84")
         clear()
-        os.system("MONOLIT.py")
     
 
 wind = True
