@@ -18,14 +18,10 @@ try:
     import webbrowser
     import platform
     import struct
-    import pyfiglet
     import subprocess
 except ImportError as e:
     print("Скачай библиотеки pip install colorama rich requests pyfiglet scapy")
-    
-def text(text):
-    print("")
-    return pyfiglet.figlet_format(text, font="ansi_shadow")
+
  
 
 api_key = "at_gXluvsZNGXUchVzcGWvTTZ3zQOFDA"
@@ -167,10 +163,15 @@ def color(text, color):
 def rich(text, color):
     c.print(text, style=color)
 
-mlogo = text("monolit")   
+mlogo = """
+███╗   ███╗ ██████╗ ███╗   ██╗ ██████╗ ██╗     ██╗████████╗
+████╗ ████║██╔═══██╗████╗  ██║██╔═══██╗██║     ██║╚══██╔══╝
+██╔████╔██║██║   ██║██╔██╗ ██║██║   ██║██║     ██║   ██║
+██║╚██╔╝██║██║   ██║██║╚██╗██║██║   ██║██║     ██║   ██║
+██║ ╚═╝ ██║╚██████╔╝██║ ╚████║╚██████╔╝███████╗██║   ██║
+╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚═╝   ╚═╝"""   
 def start():
     def logo():
-        print("")
         rich(mlogo, "#205670")
         color("    CODE BY TIMONO", yellow)
         color("""    Github: https://github.com/TimonoTV
@@ -225,7 +226,13 @@ def wifi():
     from pywifi import PyWiFi, const, Profile
     
     clear()
-    wifi.logo = text("wifi-tools")
+    wifi.logo = """
+██╗    ██╗██╗███████╗██╗   ████████╗ ██████╗  ██████╗ ██╗     ███████╗
+██║    ██║██║██╔════╝██║   ╚══██╔══╝██╔═══██╗██╔═══██╗██║     ██╔════╝
+██║ █╗ ██║██║█████╗  ██║█████╗██║   ██║   ██║██║   ██║██║     ███████╗
+██║███╗██║██║██╔══╝  ██║╚════╝██║   ██║   ██║██║   ██║██║     ╚════██║
+╚███╔███╔╝██║██║     ██║      ██║   ╚██████╔╝╚██████╔╝███████╗███████║
+ ╚══╝╚══╝ ╚═╝╚═╝     ╚═╝      ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝╚══════╝"""
     rich(wifi.logo, "#16ebfa")
     def wifi_scan():
         wifi = PyWiFi()
@@ -456,7 +463,9 @@ def update():
         filename = "MONOLIT.py"
         download_file(url, filename)
         rich("Все скачано запуск...", "#0ced84")
+        wind = False
         clear()
+        os.system("python MONOLIT.py")
     
 
 wind = True
@@ -569,11 +578,6 @@ while wind:
                 os.system(console)
     elif vod == "wifi":
         wifi()
-    elif vod == "text":
-        clear()
-        textvod = input(blue + "Текст которий хотите увеличить: ")
-        print(text(textvod))
-        q()
         
     elif vod == "ttl":
         update()
